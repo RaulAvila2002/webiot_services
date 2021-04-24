@@ -22,13 +22,13 @@ rand-str()
 
 clear
 msg="
-  _____     _____ _                   ___   __  
-  \_   \___/__   (_) ___ ___  ___    / _ \ / /  
-   / /\/ _ \ / /\/ |/ __/ _ \/ __|  / /_\// /   
-/\/ /_| (_) / /  | | (_| (_) \__ \ / /_\\/ /___ 
-\____/ \___/\/   |_|\___\___/|___/ \____/\____/ 
+__        __   _    ___ ___ _____ 
+\ \      / /__| |__|_ _/ _ \_   _|
+ \ \ /\ / / _ \ '_ \| | | | || |  
+  \ V  V /  __/ |_) | | |_| || |  
+   \_/\_/ \___|_.__/___\___/ |_|  
 
-                                    ioticos.org                                                
+                    webiot.com.ar                                                
 "
 
 
@@ -269,11 +269,11 @@ sudo ./install_docker.sh
 sudo rm install_docker.sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-sudo git clone https://github.com/ioticos/ioticos_god_level_services.git
-sudo mv ioticos_god_level_services ioticos
+sudo git clone https://github.com/RaulAvila2002/webiot_services.git
+sudo mv webiot_services webiot
 
 
-cd ioticos
+cd webiot
 
 ## ______________________________
 ## INSALL INIT
@@ -296,8 +296,8 @@ sudo sh -c " echo 'EMQX_DEFAULT_USER_PASSWORD=${EMQX_DEFAULT_USER_PASSWORD}' >> 
 sudo sh -c " echo 'EMQX_DEFAULT_APPLICATION_SECRET=${EMQX_DEFAULT_APPLICATION_SECRET}' >> $filename"
 
 
-sudo git clone https://github.com/ioticos/ioticos_god_level_app.git
-sudo mv ioticos_god_level_app  app
+sudo git clone https://github.com/RaulAvila2002/webiot_app.git
+sudo mv webiot_app  app
 
 cd app
 
@@ -317,7 +317,7 @@ sudo sh -c "echo 'MONGO_USERNAME=${MONGO_USERNAME}' >> $filename"
 sudo sh -c "echo 'MONGO_PASSWORD=${MONGO_PASSWORD}' >> $filename"
 sudo sh -c "echo 'MONGO_HOST=mongo' >> $filename"
 sudo sh -c "echo 'MONGO_PORT=${MONGO_PORT}' >> $filename"
-sudo sh -c "echo 'MONGO_DATABASE=ioticos_god_level' >> $filename"
+sudo sh -c "echo 'MONGO_DATABASE=webiot' >> $filename"
 sudo sh -c "echo '' >> $filename"
 
 
