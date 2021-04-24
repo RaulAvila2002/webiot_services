@@ -1,39 +1,40 @@
 version: "3.8"
-
+#
 volumes:
   vol-emqx-data:
     name: foo-emqx-data
+  #vol-emqx-etc:
+  #  name: foo-emqx-etc
   vol-emqx-log:
     name: foo-emqx-log
+#
 
 
 services:
-
-  node:
-    container_name: node
-    image: "node:14"
-    restart: always
-    working_dir: /home/node/app
-    volumes:
-      - ./app/:/home/node/app
-    ports:
-      - "3000:3000"
-      - "3001:3001"
-      - "80:3002"
-
-    links:
-      - emqx
-      - mongo
-
-    command: sh -c "echo 'delaying 30 seconds' && sleep 30 && npm run start"
-    #command: sh -c "npm install"
+    
+    node:
+        container_name: node
+        image: "node:14"
+        restart: always
+        working_dir: /home/node/app
+        volumes:
+          - ./app/:/home/node/app
+        ports:
+          - "3000:3000"
+          - "3001:3001"
+          - "80:3002"
+    
+        links:
+          - emqx
+          - mongo
+    
+        command: sh -c "echo 'delaying 30 seconds' && sleep 30 && npm run start"
+        #command: sh -c "npm install"
 
   mongo:
     container_name: mongo
     image: mongo:4.4
     restart: always
-    logging:
-      driver: "none"
     environment:
       TZ: "${TZ}"
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_USERNAME}"
@@ -41,16 +42,16 @@ services:
     volumes:
       - ./mongodata:/data/db
     ports:
-      - ${MONGO_EXT_PORT}:27017
+      - 27017:27017
 
   emqx:
     container_name: emqx
     image: emqx/emqx:4.2.3
     restart: always
-
     ports:
       - 18083:18083
       - 1883:1883
+      - 8883:8883
       - 8083:8083
       - 8085:8081
 
@@ -58,15 +59,14 @@ services:
       - vol-emqx-data:/opt/emqx/data
       - vol-emqx-log:/opt/emqx/log
 
-  
     links:
       - mongo
 
     extra_hosts:
-      - "localhost:192.168.0.6"
+      - "localhost:192.168.0.7"
 
     environment:
-      EMQX_NAME: ioticos-gl
+      EMQX_NAME: webiot
       EMQX_HOST: 127.0.0.1
 
       TZ: "${TZ}"
@@ -92,7 +92,7 @@ services:
       EMQX_AUTH__MONGO__PASSWORD: "${MONGO_PASSWORD}"
       EMQX_AUTH__MONGO__AUTH_SOURCE: admin
 
-      EMQX_AUTH__MONGO__DATABASE: "ioticos_god_level"
+      EMQX_AUTH__MONGO__DATABASE: "webiot"
       EMQX_AUTH__MONGO__AUTH_QUERY__COLLECTION: "emqxauthrules"
 
       EMQX_AUTH__MONGO__SUPER_QUERY__COLLECTION: "emqxauthrules"
@@ -113,4 +113,3 @@ services:
       EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
 
       EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
-
