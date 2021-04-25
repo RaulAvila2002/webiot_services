@@ -221,12 +221,12 @@ if [[ $SSL -eq 1 ]]
     SSL="https://"
     WSPREFIX="wss://"
     MQTT_HOST=$DOMAIN
-    MQTT_PORT="8084"
+    MQTT_PORT="8094"
     SSLREDIRECT="true"
   else
     SSL="http://"
     WSPREFIX="ws://"
-    MQTT_PORT="8083"
+    MQTT_PORT="8093"
     MQTT_HOST=$IP
     SSLREDIRECT="false"
 fi
