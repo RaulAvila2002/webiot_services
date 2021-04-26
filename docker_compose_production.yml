@@ -28,9 +28,9 @@ services:
      - emqx
      - mongo
 
-    #command: sh -c "echo 'delaying 30 seconds' && sleep 30 && npm run start"
+    command: sh -c "echo 'delaying 30 seconds' && sleep 30 && npm run start"
     #command: sh -c "npm install"
-    command: sh -c "node index.js"
+    #command: sh -c "node index.js"
 
   mongo:
     container_name: mongo
@@ -64,7 +64,7 @@ services:
       - mongo
 
     extra_hosts:
-      - "localhost:192.168.0.7"
+      - "localhost:168.181.187.173"
 
     environment:
       EMQX_NAME: webiot
@@ -101,7 +101,7 @@ services:
       EMQX_AUTH__MONGO__SUPER_QUERY__SELECTOR: "username=%u"
       EMQX_AUTH__MONGO__SUPER_QUERY: "off"
 
-      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_HASH: plain
+      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_HASH: "plain"
       EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_FIELD: "password"
       EMQX_AUTH__MONGO__AUTH_QUERY__SELECTOR: "username=%u"
 
