@@ -43,7 +43,7 @@ services:
       - mongo
 
     extra_hosts:
-      - "localhost:192.168.0.7"
+      - "localhost:168.181.187.173"
 
     environment:
       EMQX_NAME: webiot
